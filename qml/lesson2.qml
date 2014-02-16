@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import "Presentation"
 import "Utils"
+import "Lesson2"
 
 OpacityTransitionPresentation {
     
@@ -12,4 +13,10 @@ OpacityTransitionPresentation {
         centeredText: "Оттенки серого"
     }
 
+    Slide {
+        anchors.fill: parent
+        Grayscale_style {
+            
+        }
+    }
 }

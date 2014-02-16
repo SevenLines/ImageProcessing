@@ -1,6 +1,6 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/ColorPreview2
-folder_01.target = qml
+folder_01.source = qml
+folder_01.target = .
 DEPLOYMENTFOLDERS = folder_01
 
 # Additional import path used to resolve QML modules in Creator's code model
@@ -17,8 +17,10 @@ SOURCES += main.cpp \
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
+QT += widgets
+
 OTHER_FILES += \
-    qml/ColorPreview2/colorprocessing.js \
+    qml/* \
     assets/* \
     assets/HSV.png \
     assets/Lenna-CMYK_Y.png \
@@ -35,10 +37,16 @@ OTHER_FILES += \
     assets/Lenna-CMY_C.png \
     assets/1000px-CMYK_screen_angles.svg.png \
     assets/color_table.pdf \
-    qml/ColorPreview2/lesson1.qml
+
+
+MOC_DIR = moc
+OBJECTS_DIR = obj
 
 RESOURCES += \
-    images.qrc
+    images.qrc \
+    shaders.qrc
 
 HEADERS += \
     colorconverter.h
+
+FORMS +=
