@@ -1,7 +1,9 @@
 #include <QtGui/QGuiApplication>
 #include <QQmlContext>
+#include <QQmlEngine>
 #include "qtquick2applicationviewer.h"
 #include "colorconverter.h"
+#include "imageprovider.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +14,9 @@ int main(int argc, char *argv[])
     
     ColorConverter colorConverter;
     viewer.rootContext()->setContextProperty("ColorConverter", &colorConverter);
+    
+    viewer.engine()->addImageProvider(QLatin1String("tones"), new ImageProvider);
+    viewer.engine()->addImageProvider(QLatin1String("dither"), new ImageProvider);
     
     viewer.setMainQmlFile(QStringLiteral("qml/lesson2.qml"));
     viewer.showFullScreen();

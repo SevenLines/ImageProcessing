@@ -17,6 +17,8 @@ public:
     
     Q_INVOKABLE QColor hsv(int h, int s, int v);
     
+//    Q_INVOKABLE QImage processImage(QImage image);
+    
 signals:
     
 public slots:

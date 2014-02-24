@@ -168,7 +168,7 @@ Item {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
         onClicked: {
             if (mouse.button == Qt.RightButton)
                 goToPreviousSlide()

@@ -33,5 +33,23 @@
         <file>assets/circles.svg</file>
         <file>assets/color_table.pdf</file>
         <file>assets/Lenna-V.png</file>
+        <file>assets/Cone-response-RU.png</file>
+        <file>assets/Portal_Companion_Cube.jpg</file>
+        <file>assets/1000px-CIExy1931_fixed.svg.png</file>
+        <file>assets/1024px-CIE1931_XYZCMF.png</file>
+        <file>assets/download.pdf</file>
+        <file>assets/portal_cube.jpg</file>
+        <file>assets/Portal_Companion_Cube_fs_dithering.png</file>
+        <file>assets/Portal_Companion_Cube_ht.png</file>
+        <file>assets/Portal_Companion_Cube_linear_dithering.png</file>
+        <file>assets/portal_cube_512.png</file>
+        <file>assets/portal_cube_640.png</file>
+        <file>assets/portal_cube_720.png</file>
+        <file>assets/portal_cube_fs.png</file>
+        <file>assets/portal_cube_ht.png</file>
+        <file>assets/portal_cube_linear.png</file>
+        <file>assets/rainbow_cake-6.png</file>
+        <file>assets/772px-Grey_square_optical_illusion.PNG</file>
+        <file>assets/772px-Same_color_illusion_proof2.png</file>
     </qresource>
 </RCC>

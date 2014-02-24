@@ -11,6 +11,8 @@ OpacityTransitionPresentation {
 //    SlideCounter {}
     textColor: "white";
     
+
+    
     // first title slide
     SlideTitle {
         centeredText: "Цветовые модели"
@@ -21,7 +23,7 @@ OpacityTransitionPresentation {
     }
     
     Slide1Im {
-        source: "qrc:/images/assets/SML.png"
+        source: "qrc:/images/assets/Cone-response-RU.png"
     }
     
 //    Slide1Im {
@@ -150,6 +152,14 @@ OpacityTransitionPresentation {
          source: "qrc:/images/assets/1000px-CMYK_screen_angles.svg.png"
     }
 
+    Slide1Im {
+        source: "qrc:/images/assets/1024px-CIE1931_XYZCMF.png"
+    }
+    
+    Slide1Im {
+        source: "qrc:/images/assets/1000px-CIExy1931_fixed.svg.png"
+    }
+    
     
 }
 

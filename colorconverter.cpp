@@ -31,3 +31,4 @@ QColor ColorConverter::hsv(int h, int s, int v)
 {
     return QColor::fromHsv(h,s*2.55,v*2.55);
 }
+

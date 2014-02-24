@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.0
 import QtQuick.Controls 1.1
+import "../Utils"
 
 Rectangle {
     anchors.fill: parent
@@ -30,12 +31,14 @@ Rectangle {
         property variant src: imgSource
         
         property int numberOfShades: 2
+        property int numberOfColorShades: 2
         property int style: 0
         
         fragmentShader: "
 uniform sampler2D src;
 uniform int style;
 uniform int numberOfShades;
+uniform int numberOfColorShades;
 varying vec2 highp qt_TexCoord0;
 void main() {
 vec4 clr = texture2D(src, qt_TexCoord0);
@@ -70,6 +73,24 @@ if (clr.a > 0.0) {
         float factor = 1.0 / (n - 1.0);
         gray = float(int(gray / factor + 0.5))  * factor;
     }
+    if (style == 7) {
+        float n = float(numberOfColorShades);
+        float factor = 1.0 / (n - 1.0);
+        clr.r = float(int(clr.r / factor + 0.5))  * factor;        
+        clr.g = float(int(clr.g / factor + 0.5))  * factor;
+        clr.b = float(int(clr.b / factor + 0.5))  * factor;
+        gl_FragColor = vec4(clr.r, clr.g, clr.b, 1.0);
+        return;
+    }
+    if (style == 8) {
+        gray = clr.r;
+    }
+    if (style == 9) {
+        gray = clr.g;
+    }
+    if (style == 10) {
+        gray = clr.b;
+    }
 
     float o = gray;
 
@@ -82,135 +103,93 @@ if (clr.a > 0.0) {
     }
     
     
-    
-    Rectangle {
-        width:0.35*parent.width;
-        anchors.top: parent.top
-        color: Qt.rgba(1,1,1,1)
-        anchors.right: parent.right;
-        anchors.bottom: parent.bottom;
-        z: 1000;
-        
-        ListView {
-            spacing: 2
-           
-            clip: true
-            
-            anchors.fill: parent
-            anchors.margins: 8
-            model: ListModel {
-                ListElement {
-                    title: "origin"
-                    type: 0
-                }
-                ListElement {
-                    title: "average"
-                    type: 1
-                }
-                ListElement {
-                    title: "desaturate"
-                    type: 2
-                }
-                ListElement {
-                    title: "luma"
-                    type: 3
-                }
-                ListElement {
-                    title: "min"
-                    type: 4
-                }
-                ListElement {
-                    title: "max"
-                    type: 5
-                }
-                ListElement {
-                    title: "tones"
-                    type: 6
-                }
+    ItemsList {
+        model: ListModel {
+            ListElement {
+                title: "origin"
+                type: 0
             }
-            delegate: Rectangle {
-                id: rect
-                width: parent.width   
-                height:1.1*text.height
-                
-                state: {
-                    if (type == effect.style) {
-                        return "selected";
-                    } else  {
-                        if (mouseArea.containsMouse) {
-                            return "hovered";
+            ListElement {
+                title: "average"
+                type: 1
+            }
+            ListElement {
+                title: "desaturate"
+                type: 2
+            }
+            ListElement {
+                title: "luma"
+                type: 3
+            }
+            ListElement {
+                title: "min"
+                type: 4
+            }
+            ListElement {
+                title: "max"
+                type: 5
+            }
+            ListElement {
+                title: "red"
+                type: 8
+            }
+            ListElement {
+                title: "green"
+                type: 9
+            }
+            ListElement {
+                title: "blue"
+                type: 10
+            }
+            ListElement {
+                title: "grays"
+                type: 6
+            }
+            ListElement {
+                title: "tones"
+                type: 7
+            }
+        }
+          
+        delegate: ItemDelegate {
+            id: item
+            selected: type == effect.style
+            
+            text: {
+                if (type==6)
+                    return title +":"+ effect.numberOfShades;
+                if (type == 7)
+                    return title +":"+ effect.numberOfColorShades + " " + effect.numberOfColorShades + 
+                            " " + effect.numberOfColorShades;
+
+                return title;
+            }
+            
+            onMouseClicked: {
+                effect.style = type;
+            }
+            
+            onWheelEvent: {
+                if (type==6 ) {
+                    if (wheel.angleDelta.y>0) {
+                        effect.numberOfShades++;
+                    } else {
+                        if (effect.numberOfShades > 2) {
+                            effect.numberOfShades--;
                         }
-                        return "default";
                     }
                 }
-                
-                states: [
-                    State {
-                        name: "selected"
-                        PropertyChanges {target: rect; color: "orange" }
-                    },
-                    State {
-                        name: "default"
-                        PropertyChanges {target: rect; color: "white" }
-                    },
-                    State {
-                        name: "hovered"
-                        PropertyChanges {target: rect; color: "#DDD"}
-                    }
-
-                ]
-                
-                transitions: [
-                    Transition {
-                        ColorAnimation {properties: "color"}
-                    }
-                ]
-                
-                Text {
-                    color: (type == effect.style)?"white":"black"
-                    id: text
-                    width:parent.width
-                    text: {
-                        if (type==6) {
-                            return title +":"+ effect.numberOfShades;
-                        } else {
-                            return title;
-                        }
-                    }
-                        
-                    font.pixelSize: 60
-                    font.bold: true
-                    horizontalAlignment: Text.AlignHCenter
-                    wrapMode: Text.WordWrap
-                    
-                    transitions: [
-                        Transition {
-                            ColorAnimation {properties: "color"}
-                        }
-                    ]
-                    
-                    MouseArea {
-                        id:mouseArea
-                        anchors.fill: parent
-                        onClicked: {
-                            effect.style = type
-                        }
-                        hoverEnabled: true; 
-                        
-                        onWheel: {
-                            if (type==6) {
-                                if (wheel.angleDelta.y>0) {
-                                    effect.numberOfShades++;
-                                } else {
-                                    if (effect.numberOfShades > 2) {
-                                        effect.numberOfShades--;
-                                    }
-                                }
-                            }
+                if (type==7 ) {
+                    if (wheel.angleDelta.y>0) {
+                        effect.numberOfColorShades++;
+                    } else {
+                        if (effect.numberOfColorShades > 2) {
+                            effect.numberOfColorShades--;
                         }
                     }
                 }
             }
         }
     }
+    
 }
