@@ -4,8 +4,8 @@ import "../Utils"
 Slide2Im {
     anchors.fill: parent
     id:slide1
-    image1Source: "image://dither/3/" + slide1.colorsCount;
-    image2Source: "image://dither/4/" + slide1.colorsCount;
+    image1Source: "image://colorDither/3/" + slide1.colorsCount;
+    image2Source: "image://colorDither/4/" + slide1.colorsCount;
     property int colorsCount: 2;
     color:"black";
   

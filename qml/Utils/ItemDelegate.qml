@@ -4,12 +4,18 @@ Rectangle {
     width: parent.width   
     height:1.1*text.height
     
-    property bool selected: false
+    property bool selected: ListView.isCurrentItem
     property alias text: text.text
     
+    property string selectedColor: "orange" 
+    property string selectedTextColor: "white"
+    property string defalColor: "white" 
+    property string defalTextColor: "black" 
+    property string hoverColor: "#DDD"
     
     signal wheelEvent(variant wheel);
     signal mouseClicked(variant mouse);
+ 
     
     state: {
         if (selected) {
@@ -25,15 +31,15 @@ Rectangle {
     states: [
         State {
             name: "selected"
-            PropertyChanges {target: rect; color: "orange" }
+            PropertyChanges {target: rect; color: selectedColor }
         },
         State {
             name: "default"
-            PropertyChanges {target: rect; color: "white" }
+            PropertyChanges {target: rect; color: defalColor }
         },
         State {
             name: "hovered"
-            PropertyChanges {target: rect; color: "#DDD"}
+            PropertyChanges {target: rect; color: hoverColor}
         }
 
     ]
@@ -45,7 +51,7 @@ Rectangle {
     ]
     
     Text {
-        color: rect.selected?"white":"black"
+        color: rect.selected?selectedTextColor:defalTextColor
         id: text
         width:parent.width
         

@@ -3,10 +3,10 @@
 #include "opencv/opencvutils.h"
 #include <QMutexLocker>
 
-ImageProvider::ImageProvider()
+ImageProvider::ImageProvider(QString imagePath)
     : QQuickImageProvider(QQmlImageProviderBase::Pixmap)
 {
-    pixmap.load(":/images/assets/portal_cube_720.png");
+    pixmap.load(imagePath);
 }
 
 QPixmap ImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
@@ -37,16 +37,8 @@ using namespace cv;
 uchar ImageProvider::getNereastColor(uchar g)
 {
     unsigned char factor = 255 / (colorsCount-1);
-    
-    unsigned char k = g / factor;
-    unsigned  char left = g - k*factor;
-    unsigned char right = (k+1)*factor - g;
     unsigned char newColor;
-    if (left < right) {
-        newColor = k*factor;
-    } else  {
-        newColor = (++k)*factor;
-    }
+    newColor = (int)((float)g / factor + 0.5) * factor;
     return newColor;
 }
 
@@ -105,7 +97,7 @@ QPixmap ImageProvider::halfToneColor()
         }
     }
     
-    return OpenCVUtils::ToQPixmap(OpenCVUtils::ToRGB(mat));
+    return OpenCVUtils::ToQPixmap(mat);
 }
 
 QPixmap ImageProvider::linearDithering()
@@ -187,9 +179,9 @@ QPixmap ImageProvider::floydSteinbergDithering()
             uchar newColor;
             uchar oldColor = img(y,x);
             
-            if (x>0){
-               errors[x-1]+=errXY;
-            }
+//            if (x>0){
+//               errors[x-1]+=errXY;
+//            }
             
             addError(oldColor, errors[x]); 
             addError(oldColor, err);
@@ -199,9 +191,11 @@ QPixmap ImageProvider::floydSteinbergDithering()
             
             if (x>0)
                 errors[x-1] += (oldColor - newColor)*(3.f/16.f);
+            if (x>1)
+                errors[x-2] += (oldColor - newColor)*(1.f/16.f);
             
             err += (oldColor - newColor)*(7.f/16.f);
-            errXY = (oldColor - newColor)*(1.f/16.f);
+//            errXY = (oldColor - newColor)*(1.f/16.f);
             
 
             img(y,x) = newColor;
@@ -232,9 +226,9 @@ QPixmap ImageProvider::floydSteinbergColorDithering()
                 uchar newColor;
                 uchar oldColor = img(y,x)[c];
                 
-                if (x>0){
-                   errors[c][x-1]+=errXY[c];
-                }
+//                if (x>0){
+//                   errors[c][x-1]+=errXY[c];
+//                }
                 
                 addError(oldColor, errors[c][x]); 
                 addError(oldColor, err[c]);
@@ -242,11 +236,13 @@ QPixmap ImageProvider::floydSteinbergColorDithering()
                 newColor = getNereastColor(oldColor);
                 errors[c][x] += (oldColor - newColor)*(5.f/16.f);
                 
+                if (x>1)
+                    errors[c][x-2] += (oldColor - newColor)*(1.f/16.f);
                 if (x>0)
                     errors[c][x-1] += (oldColor - newColor)*(3.f/16.f);
                 
                 err[c] += (oldColor - newColor)*(7.f/16.f);
-                errXY[c] = (oldColor - newColor)*(1.f/16.f);
+//                errXY[c] = (oldColor - newColor)*(1.f/16.f);
                 
     
                 img(y,x)[c] = newColor;

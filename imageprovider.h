@@ -10,7 +10,7 @@ private:
     int colorsCount;
     
 public:
-    explicit ImageProvider();
+    explicit ImageProvider(QString imagePath = ":/images/assets/portal_cube_720.png");
     
 signals:
     

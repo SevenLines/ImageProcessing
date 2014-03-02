@@ -11,6 +11,7 @@ SOURCES += main.cpp \
     colorconverter.cpp \
     imageprovider.cpp \
     ../_UTILS/opencv/opencvutils.cpp \
+    imagehistogram.cpp
 
 # Installation path
 # target.path =
@@ -37,6 +38,7 @@ HEADERS += \
     colorconverter.h \
     imageprovider.h \
     ../_UTILS/opencv/opencvutils.h \
+    imagehistogram.h
 
 INCLUDEPATH += ../_UTILS/ 
 
