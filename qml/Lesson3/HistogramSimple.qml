@@ -19,17 +19,17 @@ Slide2Im {
         property int num: 0
         ListElement {
             name: "red"
-            nameRu: "красный"
+            nameRu: "red"
             channel: 2
         }   
         ListElement {
             name: "lime"
-            nameRu: "зеленый"
+            nameRu: "green"
             channel: 1
         }   
         ListElement {
             name: "blue"
-            nameRu: "синий"
+            nameRu: "blue"
             channel: 0
         }   
     }

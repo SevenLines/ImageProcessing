@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     colorconverter.cpp \
     imageprovider.cpp \
     ../_UTILS/opencv/opencvutils.cpp \
-    imagehistogram.cpp
+    imagehistogram.cpp \
+    ../_UTILS/opencv/imagefilters.cpp
 
 # Installation path
 # target.path =
@@ -24,7 +25,9 @@ QT += widgets quick
 
 OTHER_FILES += \
     qml/* \
-    assets/* 
+    assets/* \ 
+    qml/Lesson3/HistogramWhiteBalance.qml \
+    qml/Lesson4/MeanBlur.qml
 
 
 MOC_DIR = moc
@@ -32,13 +35,16 @@ OBJECTS_DIR = obj
 
 RESOURCES += \
     images.qrc \
-    shaders.qrc
+    shaders.qrc \
+    lesson3.qrc \
+    lesson4.qrc
 
 HEADERS += \
     colorconverter.h \
     imageprovider.h \
     ../_UTILS/opencv/opencvutils.h \
-    imagehistogram.h
+    imagehistogram.h \
+    ../_UTILS/opencv/imagefilters.h
 
 INCLUDEPATH += ../_UTILS/ 
 

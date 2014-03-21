@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/lesson4">
+        <file>assets/jaguar.jpg</file>
+        <file>assets/blurs/median_0x0.png</file>
+        <file>assets/blurs/median_1x1.png</file>
+        <file>assets/blurs/median_2x2.png</file>
+        <file>assets/blurs/median_3x3.png</file>
+        <file>assets/blurs/median_4x4.png</file>
+        <file>assets/blurs/median_5x5.png</file>
+        <file>assets/blurs/median_6x6.png</file>
+        <file>assets/blurs/median_7x7.png</file>
+        <file>assets/blurs/Nanjing_Skyline_2010.png</file>
+        <file>assets/blurs/alfaromeo.jpg</file>
+    </qresource>
+</RCC>

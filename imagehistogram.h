@@ -23,7 +23,7 @@ private:
      * @param color цвет гистограммы
      * @return 
      */
-    QPixmap getHistogam(int channel, QString color);
+    QPixmap getHistogam(int channel, QString color, QString backColor="black");
     
     // img should be in grayscale color model
     QPixmap getHistogam(cv::Mat img, QString color, QString backColor="black");
@@ -36,6 +36,14 @@ private:
      * @return 
      */
     cv::Mat getContrast(int kContrast);
+    void normalizeChannel(cv::Mat &img);
+    cv::Mat getNormalizeBrightness();
+    cv::Mat getNormalizeSaturation();
+    cv::Mat getNormalizeHue();
+    cv::Mat getColorEnhance();
+    cv::Mat getWhiteBalanced(int red, int green, int blue);
+    cv::Mat getAutoBalance();
+    cv::Mat getGamma(float k);
     
 };
 

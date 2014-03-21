@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/lesson3">
+        <file>assets/uncontrast_image.jpg</file>
+        <file>assets/rose.png</file>
+        <file>assets/girl_in_water.png</file>
+    </qresource>
+</RCC>

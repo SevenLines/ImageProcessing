@@ -15,13 +15,13 @@ Slide2Im {
                   +histogramsModel.get(item).contrast
                   +"/hist/" 
                   + histogramsModel.get(item).name
-                  + "/white"
+                  + "/#EEE"
     
     ListModel {
         id: histogramsModel
         property int num: 0
         ListElement {
-            name: "gray"
+            name: "black"
             nameRu: "contrast"
             contrast: 0
         }     

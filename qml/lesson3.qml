@@ -13,7 +13,7 @@ OpacityTransitionPresentation {
     
     // first title slide
     SlideTitle {
-        centeredText: "Контраст"
+        centeredText: "Гистограмма"
     }
     
     HistogramSimple {
@@ -21,9 +21,42 @@ OpacityTransitionPresentation {
     
     HistogramSimpleGray {
     }
-    
+       
     HistogramLuma {
         
     }
+    
+    HistogramWhiteBalance {
+        
+    }
+    
+    HistogramAutoBalance {
+        
+    } 
+    
+    HistogramHSV {
+        
+    }    
+    
+    HistogramNormalize {
+        
+    }
+    
+    HistogramColorenhance {
+        
+    }
+    
+    HistogramHuenormalize {
+        
+    }
+    
+    HistogramSB{
+        
+    }
+    
+    HistogrammGamma{
+        
+    }
+
 
 }

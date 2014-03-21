@@ -13,26 +13,25 @@ Slide2Im {
                   +histogramsModel.get(item).channel
     image2Source: "image://himage1/hist/"
                   +histogramsModel.get(item).channel
-                  +"/" 
-                  +histogramsModel.get(item).name ;
+                  +"/black/#EEE";
     
     ListModel {
         id: histogramsModel
         property int num: 0
         ListElement {
-            name: "red"
-            nameRu: "red"
-            channel: 2
+            name: "gray"
+            nameRu: "hue"
+            channel: 5
         }   
         ListElement {
-            name: "lime"
-            nameRu: "green"
-            channel: 1
+            name: "gray"
+            nameRu: "saturation"
+            channel: 6
         }   
         ListElement {
-            name: "blue"
-            nameRu: "blue"
-            channel: 0
+            name: "gray"
+            nameRu: "value"
+            channel: 7
         }   
     }
     
